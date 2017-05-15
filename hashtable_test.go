@@ -16,6 +16,15 @@ func TestHashTableInsert(t *testing.T) {
 	assert.Equal(t, 2, h.Size(), "Check number of items")
 }
 
+func TestHashTableCollision(t *testing.T) {
+	h := NewHashTable()
+	h.Insert([]byte("costarring"), []byte("costarring"))
+	h.Insert([]byte("liquid"), []byte("liquid"))
+	assert.True(t, bytes.Equal(*h.Find([]byte("costarring")), []byte("costarring")))
+	h.Erase([]byte("costarring"))
+	h.Insert([]byte("costarring"), []byte("costarring"))
+}
+
 func TestHashTableErase(t *testing.T) {
 	h := NewHashTable()
 	h.Insert([]byte("test"), []byte("test"))
